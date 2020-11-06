@@ -5,12 +5,12 @@
 #include <security/pam_appl.h>
 #include <security/pam_modules.h>
 
-/* expected hook */
+/* expected hook, necessary to get module known */
 PAM_EXTERN int pam_sm_setcred( pam_handle_t *pamh, int flags, int argc, const char **argv ) {
 	return PAM_SUCCESS;
 }
 
-/* expected hook, this is where custom stuff happens */
+/* expected hook, lets authenticate only if the current weekday is included in parameter array */
 PAM_EXTERN int pam_sm_authenticate( pam_handle_t *pamh, int flags, int argc, const char **argv ) {
 
         if (argc < 1) 
